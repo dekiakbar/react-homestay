@@ -17,14 +17,27 @@ body{
 
                     img{
                         max-width: 400px;
-                        max-height: 180px;
+                        max-height: 150px;
                     }
                 }
             }
         }
 
         .map{
-            background-color: pink;
+            .marker{
+                color: #ffffff;
+                background-color: darkcyan;
+                padding: 5px;
+                width: 40px;
+                text-align: center;
+                font-size: 10px;
+                border-radius: 5px;
+
+                &.selected{
+                    background-color: blue;
+                    font-weight: bold; 
+                }
+            }
         }
     }
 }
