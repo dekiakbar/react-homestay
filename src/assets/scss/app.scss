@@ -9,21 +9,36 @@ body{
         padding: 0px;
 
         .main{
-            // height: 100vh;
-
             .homestays{
                 .homestay{
                     margin: 20px auto;
+                    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.2);
+                    -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.2);
+                    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.2);
 
                     img{
-                        max-width: 400px;
-                        max-height: 150px;
+                        // max-width: 400px;
+                        max-height: 130px;
+                    }
+
+                    .homestay-title{
+                        font-weight: bolder;
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                    }
+
+                    .homestay-price{
+                        font-size: 12px;
+                        margin-bottom: 5px;
                     }
                 }
             }
         }
 
         .map{
+            height: 100%;
+            bottom: 0;
+            right: 0;
             .marker{
                 color: #ffffff;
                 background-color: darkcyan;

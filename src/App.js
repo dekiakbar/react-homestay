@@ -4,23 +4,26 @@ import './assets/scss/app.scss';
 import Homestays from './components/Homestays';
 import GoogleMapReact from 'google-map-react';
 import Marker from './components/Marker';
-
+import Navbar from './components/Navbar';
 class App extends Component{
 
   constructor (props){
     super (props);
     this.state={
       homestays : [],
-      selectedHomestay:null
+      selectedHomestay:null,
+      allHomestays:[],
+      search:""
     }
   }
 
   componentDidMount(){
-    fetch("https://gist.githubusercontent.com/dekiakbar/f31eff6542920ceea46db42df1e6513f/raw/f2d6798cd8bb54d1064a38e85df3c82b93b713fa/homestay.json")
+    fetch("https://raw.githubusercontent.com/dekiakbar/fake-json/master/homestays.json")
       .then(response => response.json())
       .then((data) => {
         this.setState({
-          homestays:data
+          homestays:data,
+          allHomestays:data
         })
       })
   }
@@ -29,6 +32,14 @@ class App extends Component{
     this.setState({
       selectedHomestay : homestay
     })
+  }
+
+  handleSearch = (e) =>{
+    this.setState({
+      homestays: this.state.allHomestays.filter((homestay) =>
+        new RegExp(e,"i").exec(homestay.nama)
+      )
+    });
   }
 
   render(){
@@ -45,9 +56,10 @@ class App extends Component{
     }
     return (
       <div className="App">
+        <Navbar handleSearch={this.handleSearch} />
         <div className="wrapper row">
 
-          <div className="main col-6">
+          <div className="main col-8">
             <div className="homestays row">
               
               {this.state.homestays.map((homestay) => {
@@ -57,14 +69,16 @@ class App extends Component{
             </div>
           </div>
 
-          <div className="map col-6">
-              <GoogleMapReact center={center} zoom={16}>
-                {
-                  this.state.homestays.map((homestay) => {
-                    return <Marker key={homestay.id} lat={homestay.lat} lng={homestay.lng} harga={homestay.harga} selected={homestay === this.state.selectedHomestay} />
-                  })
-                }
-              </GoogleMapReact>
+          <div className="col-4">
+              <div className="map">
+                <GoogleMapReact center={center} zoom={16}>
+                  {
+                    this.state.homestays.map((homestay) => {
+                      return <Marker key={homestay.id} lat={homestay.lat} lng={homestay.lng} harga={homestay.harga} selected={homestay === this.state.selectedHomestay} />
+                    })
+                  }
+                </GoogleMapReact>
+              </div>
           </div>
         </div>
       </div>
