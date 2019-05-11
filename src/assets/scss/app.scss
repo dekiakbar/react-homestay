@@ -9,13 +9,22 @@ body{
         padding: 0px;
 
         .main{
-            background-color: blue;
-            height: 100vh;
+            // height: 100vh;
+
+            .homestays{
+                .homestay{
+                    margin: 20px auto;
+
+                    img{
+                        max-width: 400px;
+                        max-height: 180px;
+                    }
+                }
+            }
         }
 
         .map{
             background-color: pink;
-            height: 100vh;
         }
     }
 }
